@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose=require('mongoose')
-var io = require('socket.io').listen(server)
-var server = require('http').createServer(app)
+var mongoose=require('mongoose');
+var io = require('socket.io').listen(server);
+var server = require('http').createServer(app);
 
 
 var indexRouter = require('./routes/index');
