@@ -4,10 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose=require('mongoose');
-var io = require('socket.io').listen(server);
-var server = require('http').createServer(app);
-
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/Users/users');
 // var chatRouter = require('./routes/chat');
@@ -15,6 +11,7 @@ var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
 
+var app = express();
 var app = express();
 
 // view engine setup
@@ -33,6 +30,7 @@ app.use('/users', usersRouter);
 app.use('/upcyclers', upCyclersRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

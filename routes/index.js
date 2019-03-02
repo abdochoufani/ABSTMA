@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var mongoose=require("mongoose")
 
-/* GET home page. */
-router.get('/',(req, res)=> {
-  res.send('This is the main page of ABSTMA');
+// root route
+router.get('/', function(req, res, next) {
   res.render('index');
 });
+
+
+router.get('/chat',(req,res)=>{
+    res.render('chatForm')
+})
 
 module.exports = router;
