@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/',(req, res)=> {
-  console.log("Hello Guys")
+  res.send('This is the main page of ABSTMA');
   res.render('index');
 });
 
