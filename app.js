@@ -4,10 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose=require('mongoose');
-
-
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/Users/users');
+// var chatRouter = require('./routes/chat');
+var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
+var aboutRouter = require('./routes/about');
+var contactRouter = require('./routes/contact');
 
 var app = express();
 var app = express();
@@ -24,6 +26,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// app.use('/chat', chatRouter);
+app.use('/upcyclers', upCyclersRouter);
+app.use('/about', aboutRouter);
+app.use('/contact', contactRouter);
 
 
 // catch 404 and forward to error handler
