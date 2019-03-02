@@ -7,8 +7,13 @@ router.get('/', (req, res) => {
 });
 
 //GET Route for  => www.abstmo.com/upcyclers/login
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
   res.send('Welcome to the Login page for Upcyclers');
+});
+
+//GET Route for  => www.abstmo.com/upcyclers/signup
+router.get('/signup', (req, res) => {
+  res.send('Welcome to the Signup page for Upcyclers');
 });
 
 module.exports = router;

@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
+// var express = require('express');
+// var router = express.Router();
 
-//Route for  => www.abstmo.com/chat
-router.get('/', (req, res) => {
-  res.send('Welcome to the Chat');
-})
-
-
+// //Route for  => www.abstmo.com/chat
+// router.get('/', (req, res) => {
+//   res.send('Welcome to the Chat');
+// })
 
 
-module.exports = router;
+
+
+// module.exports = router;

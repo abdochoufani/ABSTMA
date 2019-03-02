@@ -10,7 +10,7 @@ var server = require('http').createServer(app)
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/Users/users');
-var chatRouter = require('./routes/chat');
+// var chatRouter = require('./routes/chat');
 var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/chat', chatRouter);
+// app.use('/chat', chatRouter);
 app.use('/upcyclers', upCyclersRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);

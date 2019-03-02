@@ -11,5 +11,10 @@ router.get('/login', (req, res) => {
   res.send('Welcome to the Login Page for users');
 });
 
+//GET Route for  => www.abstmo.com/users/signup
+router.get('/signup', (req, res) => {
+  res.send('Welcome to the Signup page for users');
+});
+
 
 module.exports = router;
