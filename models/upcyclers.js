@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
 const upcyclerSchema = new mongoose.Schema({
+  name:{
   fullName: String,
   firstName: String,
-  lastName: String,
+  lastName: String
+  },
   userName: String,
+  password:String,
   companyName: String,
   address: {
     street: String,
