@@ -48,4 +48,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+mongoose.connect('mongodb://localhost:27017/abstma', {useNewUrlParser: true})
+.then(() => console.log('MongodDB Connectet to ABSTMA Database'))
+.catch(err => console.log(`An error was encountered, details: ${err}`));
+
 module.exports = app;
