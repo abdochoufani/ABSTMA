@@ -4,12 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose=require('mongoose');
+var keys = require('./config/keys')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/Users/users');
-// var chatRouter = require('./routes/chat');
+var oneUserRouter=require('./routes/Users/oneUser');
 var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
+const passportSetup=require('./config/passport-setup');
+
+// test connect to mongoDB
+mongoose.connect(keys.mongodb.dbURI,()=>{
+  console.log("connected to dbtest")
+})
 
 var app = express();
 var app = express();
@@ -26,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-// app.use('/chat', chatRouter);
+app.use('/user', oneUserRouter);
 app.use('/upcyclers', upCyclersRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);

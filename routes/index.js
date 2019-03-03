@@ -12,4 +12,5 @@ router.get('/chat',(req,res)=>{
     res.render('chatForm')
 })
 
+
 module.exports = router;
