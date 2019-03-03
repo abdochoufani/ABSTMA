@@ -13,10 +13,11 @@ const recyclerSchema = new mongoose.Schema({
   },
   imageUrl: String,
   createdAt: {type: Date, default: Date.now},
-  product: {
+  //one user (recycler) can buy many products
+  product: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product'
-  }
+  }]
 });
 
 const Recycler = mongoose.model('Recycler', recyclerSchema);
