@@ -21,6 +21,7 @@ router.get('/auth/login',(req,res)=>{
 })
 
 router.get('/auth/google/logout',(req,res)=>{
+  req.logOut()
   res.redirect('/')
 })
 
