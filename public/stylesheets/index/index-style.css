@@ -3,14 +3,24 @@
 * {
     box-sizing: border-box;
   }
+
+  html, body {
+    height: 100%;
+  }
   
   body {
     font-size: 10px;
     font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
   }
   
   a {
     text-decoration: none;
+  }
+
+  .content {
+    flex: 1 0 auto;
   }
   
   header {
@@ -381,15 +391,16 @@
     display: flex;
     justify-content: flex-end;
     background-color: #f8f8f8;
+    flex-shrink: 0;
   }
   
   .social-icons {
-    width: 35%;
+    width: 45%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
   
   .social-icons i {
-    color: rgb(43, 136, 43);
+    color: rgb(66, 158, 27);
     font-size: 2.5em;
   }

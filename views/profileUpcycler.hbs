@@ -1,4 +1,28 @@
 <!--Doing some test here!-->
-<h1>Welcome to your profile {{user.userName}}</h1>
 
 <!-- create a logout buttont that links to /upcyclers/logout -->
+
+<main class="content">
+    <div class="profile-container">
+        <div class="profile-pic-section">
+            <div class="profile-img-div">
+                {{#if user.imageUrl }}
+                <img class="profile-img" src="{{ user.imageUrl }}" alt="Upcycler profile photo">
+                {{else}}
+                <img class="profile-img" src="/images/profile-placeholder.png" alt="Upcycler profile photo">
+                {{/if}}
+            </div>
+        </div>
+        <div class="profile-info-section">
+            <a href="#">Edit your profile <i class="fas fa-pencil-alt"></i></a>
+            <div>
+                <p class="keys">Upcycler:</p>
+                <p>{{ user.userName }}</p>
+            </div>
+            <div>
+                <p class="keys">Description:</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum enim, optio eveniet aspernatur quam rem voluptatum fugit dolore ipsa cumque eaque doloremque incidunt quas sed reiciendis sunt magnam iste debitis.</p>
+            </div>
+        </div>
+    </div>
+</main>
