@@ -15,7 +15,8 @@ const upcyclerSchema = new mongoose.Schema({
     city: String,
     country: String
   },
-  imageUrl: String,
+  imageUrl: {type:String, default: 'profile-placeholder.png'},
+  description: String,
   website: String,
   createdAt: {type: Date, default: Date.now},
   //one upcycler can produce many products
