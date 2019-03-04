@@ -6,12 +6,11 @@ const saltRounds = 10;
 const Upcycler = require('../../models/upcyclers');
 
 router.get('/profile', (req, res) =>{
-  debugger
   if(!req.signedCookies.email){
     res.redirect('/');
   } else {
     Upcycler.findOne({email: req.signedCookies.email},(err, user)=>{
-      debugger
+      if (err) res.send(err)
       res.render('profileUpcycler.hbs', {user});
     });
   }
