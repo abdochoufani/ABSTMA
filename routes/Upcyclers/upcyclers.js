@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const Upcycler = require('../../models/upcyclers');
+var Upcycler = require('../../models/upcyclers');
 
 //GET Route for  => www.abstmo.com/upcyclers
 router.get('/', (req, res) => {
@@ -15,27 +15,65 @@ router.get('/auth/signup', (req, res) => {
 });
 
 //POST Route for => www.abstmo.com/upcyclers/auth/signup
-router.post('/auth/signup', (req, res) =>{
-  let newUpcycler = {
-    userName: req.body.userName,
-    email: req.body.email,
-    companyName: req.body.companyName
-  }
-  //Store hashed password with bcrypt into the users db collection============================
-  bcrypt.hash(req.body.password, saltRounds).then(function(hash) {
-  // Store hash in your password DB
-  newUpcycler.password = hash;
-  Upcycler.create(newUpcycler, (err, dbentry)=>{
-    if(err){
-      console.log(`error occured: ${err}`);
-    } else {
-      res.cookie('email', req.body.email, {signed: true}); 
-      // res.send(`Welcome to the community ${dbentry.userName}`);
-      res.redirect('/upcycler/profile');
+router.post('/auth/signup', (req, res,next) =>{
+  Upcycler.findOne({ email: req.body.email }, function(err, user) {
+    if(err) {
+       console.log("error",err)
     }
-  })
-  });
-});
+    if (user) {
+          var err = new Error('A user with that email has already registered. Please use a different email..')
+         err.status = 400;
+         return next(err);
+    } else {
+        var newUpcycler = {
+          userName: req.body.userName,
+          email: req.body.email,
+          companyName: req.body.companyName
+        }
+        bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
+          // Store hash in your password DB
+          newUpcycler.password = hash;
+          Upcycler.create(newUpcycler, (err, dbentry) => {
+            if (err) {
+              console.log(`error occured: ${err}`);
+            } else {
+              res.cookie('email', dbentry.email, { signed: true });
+              // res.send(`Welcome to the community ${dbentry.userName}`);
+              res.redirect('/upcycler/profile');
+            }
+          }).then(()=>{
+            console.log("user created", newUpcycler)
+          })
+        }
+      )
+    }
+ })
+})
+
+  //Store hashed password with bcrypt into the users db collection============================
+   
+  // bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
+  //   // Store hash in your password DB
+  //   newUpcycler.password = hash;
+  //     debugger
+  //     if(err) res.send(err)
+  //     else if (Upcycler.findOne({ userName: req.body.userName}) ===true) {
+  //       res.send('User Already exist, please proceed to login page!');
+  //     } else {
+  //       Upcycler.create(newUpcycler, (err, dbentry) => {
+  //         if (err) {
+  //           console.log(`error occured: ${err}`);
+  //         } else {
+  //           res.cookie('email', dbentry.email, { signed: true });
+  //           // res.send(`Welcome to the community ${dbentry.userName}`);
+  //           res.redirect('/upcycler/profile');
+  //         }
+  //       }).then(()=>{
+  //         console.log("user created", newUpcycler)
+  //       })
+  //     }
+  //   })
+  // });
 
 //no need GET route for login as it is in the root URL /
 router.post('/auth/login', (req,res) => {

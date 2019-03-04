@@ -28,7 +28,11 @@ passport.use(new GoogleStrategy({
                 console.log("already exist")
                 done(null,recycler)
             } else {
-                var imageUrl=profile.photos[0].value.replace("?sz=50", "")
+
+                
+
+                const imageUrl = profile.photos[0].value.replace("?sz=50", "")
+
             new Recycler({
                 fullName:profile.displayName,
                 firstName:profile.name.givenName,
