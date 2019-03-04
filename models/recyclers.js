@@ -6,6 +6,7 @@ const recyclerSchema = new mongoose.Schema({
   lastName: String,
   userName:String,
   googleId:String,
+  facebookId:String,
   companyName: String,
   address: {
     street: {type:String, default:"Not set"},
