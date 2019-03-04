@@ -19,7 +19,7 @@ router.get('/signup', (req, res) => {
 });
 
 //POST Route for => www.abstmo.com/upcyclers/signup
-router.post('/signup', (req, res) =>{
+router.post('/auth/signup', (req, res) =>{
   let newUpcycler = {
     userName: req.body.userName,
     email: req.body.email,
