@@ -182,7 +182,7 @@
     color: #fff;
     font-weight: 300;
     text-align: center;
-    margin-top: 40%;
+    margin-top: 30%;
   }
   
   .form {
@@ -207,7 +207,7 @@
   
   .submit-btn {
     width: 50%;
-    margin: 0 auto;
+    margin: 25px auto 0 auto;
     padding: 10px;
     border: none;
     color: #fff;
