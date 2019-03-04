@@ -11,9 +11,9 @@ var userRouter = require('./routes/user');
 var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
+var oneUpcyclerRouter = require('./routes/Upcyclers/oneUpcycler');
 var passport=require("passport")
 var passportSetup=require('./config/passport-setup');
-var oneUpCyclerRouter = require('./routes/Upcyclers/oneUpcycler');
 
 // test connect to mongoDB
 // mongoose.connect(keys.mongodb.dbURI,()=>{
@@ -44,7 +44,7 @@ app.use(passport.session())
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/upcyclers', upCyclersRouter);
-app.use('/upcycler', oneUpCyclerRouter);
+app.use('/upcycler', oneUpcyclerRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
 
