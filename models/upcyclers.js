@@ -6,9 +6,10 @@ const upcyclerSchema = new mongoose.Schema({
   firstName: String,
   lastName: String
   },
-  userName: String,
-  password:String,
-  companyName: String,
+  userName: { type: String, required: true },
+  password: { type: String, required: true },
+  email:    { type: String, required: true },
+  companyName: { type: String, required: true },
   address: {
     street: String,
     city: String,
