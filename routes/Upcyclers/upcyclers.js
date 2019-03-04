@@ -22,18 +22,25 @@ router.post('/auth/signup', (req, res) =>{
     companyName: req.body.companyName
   }
   //Store hashed password with bcrypt into the users db collection============================
-  bcrypt.hash(req.body.password, saltRounds).then(function(hash) {
-  // Store hash in your password DB
-  newUpcycler.password = hash;
-  Upcycler.create(newUpcycler, (err, dbentry)=>{
-    if(err){
-      console.log(`error occured: ${err}`);
-    } else {
-      res.cookie('email', req.body.email, {signed: true}); 
-      // res.send(`Welcome to the community ${dbentry.userName}`);
-      res.redirect('/upcycler/profile');
-    }
-  })
+  bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
+    // Store hash in your password DB
+    newUpcycler.password = hash;
+    Upcycler.find({ email: req.body.email }, (err, user) => {
+      if (err) res.send(`Error: ${err}`);
+      else if (!user) {
+        Upcycler.create(newUpcycler, (err, dbentry) => {
+          if (err) {
+            console.log(`error occured: ${err}`);
+          } else {
+            res.cookie('email', dbentry.email, { signed: true });
+            // res.send(`Welcome to the community ${dbentry.userName}`);
+            res.redirect('/upcycler/profile');
+          }
+        })
+      } else {
+        res.send('User Already exist, please proceed to login page!');
+      }
+    })
   });
 });
 
