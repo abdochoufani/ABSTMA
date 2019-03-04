@@ -1,1 +1,119 @@
-<a href="/auth/login">Login</a>
+<!-- Sign up and log in forms -->
+<aside class="form-section-login-recycler-wrapper hide">
+  <div class="form-section-login-recycler">
+    <h2>Log in as a recycler</h2>
+    <i class="fas fa-times cross"></i>
+    <div class="login-recycler-btn-div">
+      <a href="#" class="fb-btn"><i class="fab fa-facebook-f"></i>Log in with Facebook</a>
+      <a href="/auth/login/google" class="google-btn"><i class="fab fa-google"></i>Log in with Google</a>
+    </div>
+  </div>
+</aside>
+<aside class="form-section-signup-upcycler-wrapper hide">
+  <div class="form-section-signup-upcycler">
+    <h2>Sign up as an upcycler</h2>
+    <i class="fas fa-times cross"></i>
+    <form class="form" action="">
+      <label for="">Username:</label>
+      <input class="input-field" type="text" name="">
+      <label for="">Email:</label>
+      <input class="input-field" type="email" name="">
+      <label for="">Password:</label>
+      <input class="input-field" type="password">
+      <input class="submit-btn" type="submit">
+    </form>
+  </div>
+</aside>
+<aside class="form-section-login-upcycler-wrapper hide">
+  <div class="form-section-login-upcycler">
+    <h2>Log in as an upcycler</h2>
+    <i class="fas fa-times cross"></i>
+    <form class="form" action="">
+      <label for="">Username:</label>
+      <input class="input-field" type="text" name="">
+      <label for="">Password:</label>
+      <input class="input-field" type="password">
+      <input class="submit-btn" type="submit">
+    </form>
+  </div>
+</aside>
+<!-- Header -->
+<header>
+  <nav>
+    <a href="#"><img class="logo" src="images/facebook_cover_photo_1.png" alt="abstma logo"></a>
+    <div class="hamburger-container" id="hamburger" onclick="myFunction(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <ul class="nav-ul-menu" id="menu">
+      <li><a href="#">About us</a></li>
+      <li><a href="#recycler">Are you a recycler?</a></li>
+      <li><a href="#upcycler">Are you an upcycler?</a></li>
+      <li><a href="#">Contact us</a></li>
+    </ul>
+  </nav>
+  <div class="spacer"></div>
+</header>
+
+<section class="jumbo-section">
+
+</section>
+<!-- About section -->
+<main class="about-us-main">
+  <h1>What Goes Around <br> Comes Around</h1>
+  <div class="about-icons">
+    <div class="about-icon-div">
+      <i class="fas fa-tree"></i>
+      <p>Reduce Co2 Emission</p>
+    </div>
+    <div class="about-icon-div">
+      <i class="far fa-lightbulb"></i>
+      <p>Promote Creativity</p>
+    </div>
+    <div class="about-icon-div">
+      <i class="fas fa-globe-americas"></i>
+      <p>Preserve Resources</p>
+    </div>
+  </div>
+</main>
+<!-- Recycler section -->
+<div class="users-sections-wrapper" id="recycler">
+  <section class="recycler-section">
+    <h2>Are you a recycler?</h2>
+    <div class="recycler-text">
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, quod! Doloribus reprehenderit ea enim
+        aspernatur vel, sequi et perspiciatis recusandae placeat soluta corporis, natus quas illum voluptatum!
+        Voluptate, nam officia.</p>
+      <div class="buttons-div">
+        <button id="login-recycler">Log in</button>
+      </div>
+    </div>
+  </section>
+  <!-- Image for mobile layout -->
+  <section>
+    <div class="img-div">
+      <img src="images/recycle-often.jpg" alt="">
+    </div>
+  </section>
+  <!-- Upcycler section -->
+  <section class="upcycler-section" id="upcycler">
+    <h2>Are you an upcycler?</h2>
+    <div class="upcycler-text">
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, quod! Doloribus reprehenderit ea enim
+        aspernatur vel, sequi et perspiciatis recusandae placeat soluta corporis, natus quas illum voluptatum!
+        Voluptate, nam officia.</p>
+      <div class="buttons-div">
+        <button id="signup-upcycler">Sign up</button>
+        <button id="login-upcycler">Log in</button>
+      </div>
+    </div>
+  </section>
+</div>
+<footer class="footer">
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-square"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-github-square"></i></a>
+  </div>
+</footer>

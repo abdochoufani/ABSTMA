@@ -15,11 +15,6 @@ router.get('/chat',(req,res)=>{
     res.render('chatForm')
 })
 
-
-router.get('/auth/login',(req,res)=>{
-  res.render('login')
-})
-
 router.get('/auth/google/logout',(req,res)=>{
   req.logOut()
   res.redirect('/')
