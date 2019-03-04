@@ -14,7 +14,7 @@
       background-color: #fff;
       position: static;
       overflow: hidden;
-      width: 70%;
+      width: 80%;
       display: flex;
       justify-content: flex-end;
     }
@@ -23,6 +23,7 @@
       display: block;
       font-size: 2em;
       border: none;
+      text-align: center;
     }
   
     .nav-ul-menu li a {
@@ -67,6 +68,7 @@
         background: url('../../images/jumbo.jpg');
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: 50% 0;
     }
   
       /* About */
@@ -157,7 +159,7 @@
     color: rgb(43, 136, 43);
     font-size: 4em;
   }
-  
+
   /* Form section */
   /* Login recycler */
   
@@ -230,3 +232,5 @@
     margin-top: 40%;
   }
   }
+
+  

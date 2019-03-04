@@ -15,9 +15,11 @@ const upcyclerSchema = new mongoose.Schema({
     city: String,
     country: String
   },
-  imageUrl: {type:String, default: 'profile-placeholder.png'},
+  imageUrl: String,
   description: String,
   website: String,
+  description: String,
+  score: Number,
   createdAt: {type: Date, default: Date.now},
   //one upcycler can produce many products
   product: [{
