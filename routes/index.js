@@ -20,7 +20,7 @@ router.get('/auth/google/logout',(req,res)=>{
   res.redirect('/')
 })
 
-
+/*********************GOOGLE AUTH************************** */
 //  route to test for passport
 router.get('/auth/login/google',passport.authenticate("google",{
     scope:['profile']
@@ -29,6 +29,28 @@ router.get('/auth/login/google',passport.authenticate("google",{
 
 
 router.get('/auth/google/redirect',passport.authenticate('google'),(req,res)=>{
+    res.redirect('/user/profile')
+})
+
+
+/*********************FACEBOOK AUTH************************** */
+
+
+router.get('/auth/facebook/logout',(req,res)=>{
+  req.logOut()
+  res.redirect('/')
+})
+
+
+//  route to test for passport
+router.get('/auth/login/facebook',passport.authenticate("facebook",{
+  failureRedirect:"/",
+    scope:['profile']
+})) 
+
+
+
+router.get('/auth/facebook/redirect',passport.authenticate('facebook'),(req,res)=>{
     res.redirect('/user/profile')
 })
 

@@ -1,34 +1,12 @@
 const router=require('express').Router()
-// const passport=require("passport")
 
 
 
 
-
-
-// router.get('/auth/login',(req,res)=>{
-//     res.render('login')
-// })
-
-// router.get('/auth/google/logout',(req,res)=>{
-//     res.redirect('/')
-//   })
-  
-  
-//   //  route to test for passport
-//   router.get('/auth/login/google',passport.authenticate("google",{
-//       scope:['profile']
-//   })) 
-
-
-
-//   router.get('/auth/google/redirect',passport.authenticate('google'),(req,res)=>{
-//       res.redirect('/user/profile')
-//   })
 
 
 const authCheck=(req,res,next)=>{
-    if(!req.user) res.redirect("/auth/login/google") 
+    if(!req.user) res.redirect("/") 
     else next()
 }
 
