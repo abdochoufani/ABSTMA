@@ -12,6 +12,7 @@ var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
 var oneUpcyclerRouter = require('./routes/Upcyclers/oneUpcycler');
+var productRouter = require('./routes/product');
 var passport=require("passport")
 var passportSetup=require('./config/passport-setup');
 
@@ -47,6 +48,7 @@ app.use('/upcyclers', upCyclersRouter);
 app.use('/upcycler', oneUpcyclerRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
+app.use('/product', productRouter);
 
 
 // catch 404 and forward to error handler
