@@ -13,6 +13,7 @@ var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
 var passport=require("passport")
 var passportSetup=require('./config/passport-setup');
+var oneUpCyclerRouter = require('./routes/Upcyclers/oneUpcycler');
 
 // test connect to mongoDB
 // mongoose.connect(keys.mongodb.dbURI,()=>{
@@ -43,6 +44,7 @@ app.use(passport.session())
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/upcyclers', upCyclersRouter);
+app.use('/upcycler', oneUpCyclerRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
 
