@@ -28,13 +28,14 @@ passport.use(new GoogleStrategy({
                 console.log("already exist")
                 done(null,recycler)
             } else {
+                const imageUrl = profile.photos[0].value.replace("?sz=50", "")
             new Recycler({
                 fullName:profile.displayName,
                 firstName:profile.name.givenName,
                 lastName:profile.name.familyName,
                 userName:profile.displayName,
                 googleId:profile.id,
-                imageUrl:profile.photos[0].value,
+                imageUrl,
                 gender:profile.gender
             }).save().then((newRecycler)=>{
                 console.log("user:" + newRecycler)

@@ -48,7 +48,7 @@ app.use('/upcyclers', upCyclersRouter);
 app.use('/upcycler', oneUpcyclerRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
-app.use('/product', productRouter);
+app.use('/products', productRouter);
 
 
 // catch 404 and forward to error handler
@@ -67,7 +67,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect('mongodb://localhost:27017/abstma', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/abstma', {useNewUrlParser: true})
 .then((db) => {console.log('MongodDB Connectet to ABSTMA Database')
 })
 .catch(err => console.log(`An error was encountered, details: ${err}`));

@@ -7,11 +7,11 @@ const authCheck=(req,res,next)=>{
 
 
 
-router.get("/*",authCheck)
 
 
 
-  router.get('/profile/:id',(req,res)=>{
+
+  router.get('/profile',authCheck,(req,res)=>{
       debugger
       console.log(req.user)
       res.render('profile', {recycler: req.user})
