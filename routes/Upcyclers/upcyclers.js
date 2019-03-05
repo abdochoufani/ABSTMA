@@ -5,8 +5,13 @@ const saltRounds = 10;
 var Upcycler = require('../../models/upcyclers');
 
 //GET Route for  => www.abstmo.com/upcyclers
+//show ALL UPCYCLERS
 router.get('/', (req, res) => {
   res.send('Welcome to the page for the Upcyclers');
+  res.find({},(err, upcyclers) => {
+    if (err) res.status(404).send('There seeem to be no upcycler available!');
+    else res.render('allUpcyclers', {upcycler: upcyclers});
+  });
 });
 
 //GET Route for  => www.abstmo.com/upcyclers/auth/signup
@@ -90,4 +95,5 @@ router.get('/logout',(req,res) => {
   }
 })
 //====================================================
+
 module.exports = router;
