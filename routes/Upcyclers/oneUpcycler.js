@@ -24,7 +24,7 @@ router.get('/profile', (req, res) =>{
 router.get('/edit/:id', (req, res) => {
   Upcycler.findById(req.params.id, (err, upcycler) => {
     if (err) res.status(404).send('The requested profile was not found');
-    else res.render('editUpcycler', {upcycler});
+    else res.render('editUpcycler', {user: upcycler});
   });
 });
 
