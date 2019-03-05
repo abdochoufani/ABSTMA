@@ -1,7 +1,8 @@
 const passport=require('passport');
-const upcyclerPassport= new passport.Passport();
+const GoogleStrategy=require('passport-google-oauth20')
 const LocalStrategy=require('passport-local')
 const Upcycler=require("../models/upcyclers")
+var keys = require('./keys')
 
 passport.serializeUser((user,done)=>{
   let serializedUser = {
@@ -55,7 +56,7 @@ passport.use("upcycler-local", new LocalStrategy(
     }
   ));
 
-  module.exports = upcyclerPassport
+
 
 
 
@@ -128,3 +129,6 @@ passport.use(new GoogleStrategy({
   })
   console.log(profile)
 }))
+
+
+module.exports = passport

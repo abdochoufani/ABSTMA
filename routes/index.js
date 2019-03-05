@@ -22,13 +22,13 @@ router.get('/auth/google/logout',(req,res)=>{
 
 /*********************GOOGLE AUTH************************** */
 //  route to test for passport
-router.get('/auth/login/google',recyclerPassport.authenticate("google",{
+router.get('/auth/login/google',passport.authenticate("google",{
     scope:['profile']
 })) 
 
 
 
-router.get('/auth/google/redirect',recyclerPassport.authenticate('google'),(req,res)=>{
+router.get('/auth/google/redirect',passport.authenticate('google'),(req,res)=>{
     res.redirect('/user/profile')
 })
 
