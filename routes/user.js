@@ -5,12 +5,6 @@ const authCheck=(req,res,next)=>{
     else next()
 }
 
-
-
-
-
-
-
   router.get('/profile',authCheck,(req,res)=>{
       debugger
       console.log(req.user)
@@ -18,6 +12,4 @@ const authCheck=(req,res,next)=>{
     // res.send("you arenow loged in " +req.user.userName)
   })
 
-  
-
-  module.exports=router
+module.exports=router

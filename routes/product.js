@@ -29,7 +29,6 @@ router.get('/create',(req,res)=>{
  
 })
 
-
 router.post('/', (req,res)=>{
   const {name,imageUrl, description,weight,size}=req.body;
   var upcycler = mongoose.Types.ObjectId(req.body.upcycler);
@@ -47,8 +46,6 @@ router.post('/', (req,res)=>{
       })
 })
 
-
-
 router.get("/product/:id", (req, res)=> {
   if(req.params.id){
       Product.findOne({_id:req.params.id}).populate('upcycler').exec((err, product)=>{
@@ -61,7 +58,6 @@ router.get("/product/:id", (req, res)=> {
     res.redirect("/")
   }
 })
-
 
 router.post("/product/:id/delete",(req,res)=>{
   Product.findByIdAndDelete(req.params.id, (err)=>{
@@ -80,7 +76,6 @@ router.get("/product/:id/edit",(req,res)=>{
   })
 })
 
-
 router.post("/product/:id",(req,res)=>{
   const {name,imageUrl, description,weight,size}=req.body
   const update={
@@ -95,8 +90,6 @@ router.post("/product/:id",(req,res)=>{
       res.redirect('/product');
     });
 })
-
-
 
 module.exports = router;
 
