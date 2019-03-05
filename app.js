@@ -7,19 +7,17 @@ var mongoose=require('mongoose');
 var keys = require('./config/keys');
 const cookieSession=require("cookie-session")
 var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
-var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
+var recyclersLogin=require("./routes/recyclers/login")
+var userRouter = require('./routes/recyclers/user');
+var upcyclersLogin = require('./routes/upcyclers/login');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
-var oneUpcyclerRouter = require('./routes/Upcyclers/oneUpcycler');
-var productRouter = require('./routes/product');
+var upcyclerRouter = require('./routes/upcyclers/user');
+var productRouter = require('./routes/products');
 var passport=require("passport")
 var passportSetup=require('./config/passport-setup');
 
-// test connect to mongoDB
-// mongoose.connect(keys.mongodb.dbURI,()=>{
-//   console.log("connected to dbtest")
-// })
+
 
 mongoose.connect('mongodb://localhost/abstma', {useNewUrlParser: true})
 .then((db) => {console.log('MongodDB Connectet to ABSTMA Database')
@@ -54,9 +52,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session())
 app.use('/', indexRouter);
-app.use('/user', userRouter);
-app.use('/upcyclers', upCyclersRouter);
-app.use('/upcycler', oneUpcyclerRouter);
+app.use('/recycler', userRouter);
+app.use('/recyclers',recyclersLogin)
+app.use('/upcyclers', upcyclersLogin);
+app.use('/upcycler', upcyclerRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
 app.use('/products', productRouter);

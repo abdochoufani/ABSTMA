@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose=require("mongoose")
-const passport=require("passport")
+var passport=require("passport")
 
 
 // root route
@@ -33,26 +33,6 @@ router.get('/auth/google/redirect',passport.authenticate('google'),(req,res)=>{
 })
 
 
-/*********************FACEBOOK AUTH************************** */
-
-
-router.get('/auth/facebook/logout',(req,res)=>{
-  req.logOut()
-  res.redirect('/')
-})
-
-
-//  route to test for passport
-router.get('/auth/login/facebook',passport.authenticate("facebook",{
-  failureRedirect:"/",
-    scope:['profile']
-})) 
-
-
-
-router.get('/auth/facebook/redirect',passport.authenticate('facebook'),(req,res)=>{
-    res.redirect('/user/profile')
-})
 
 
 module.exports = router;

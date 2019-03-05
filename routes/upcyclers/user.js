@@ -10,7 +10,7 @@ const Product=require('../../models/products')
 
 
 router.use((req,res,next)=>{
-  res.locals.currentUser = req.session.userId
+  res.locals.currentUser = req.session.user
   next()
 })
 
@@ -27,14 +27,16 @@ router.use((req,res,next)=>{
 
 
 router.get('/profile', (req, res) =>{
-  if(!req.session.userId){
-    res.redirect('/');
-  } else {
+  if(!req.session.user){
+    var err = new Error("You are not authorized to view this page.");
+    err.status = 403;
+    return next(err);
+  } 
     Upcycler.findById(req.session.userId,(err, user)=>{
       if (err) res.send(err)
        else res.render('profileUpcycler.hbs', {user});
     });
-  }
+
 });
 
 

@@ -5,15 +5,25 @@ const keys=require('./keys')
 const Recycler=require('../models/recyclers')
 
 
-passport.serializeUser((recycler,done)=>{
-    done(null,recycler.id)
+passport.serializeUser((user,done)=>{
+    let serializedUser = {
+        id: user.id,
+        userType: user.userType
+    }
+    done(null,serializedUser)
 })
 
 
-passport.deserializeUser((id,done)=>{
-    Recycler.findById(id).then((recycler)=>{
-        done(null,recycler)
-    })
+passport.deserializeUser((user,done)=>{
+    if(user.userType === "recycler") {
+        Recycler.findById(id).then((recycler)=>{
+            recycler.userType = "recycler"
+            done(null,recycler)
+        })
+    }
+    else if (user.userType === "upCycler") {
+    }
+
 })
 
 passport.use(new GoogleStrategy({
@@ -26,11 +36,9 @@ passport.use(new GoogleStrategy({
             if (recycler){
                 //user already exists then serilize passsword
                 console.log("already exist")
+                newRecycler.userType = "recycler"
                 done(null,recycler)
             } else {
-
-                
-
                 const imageUrl = profile.photos[0].value.replace("?sz=50", "")
 
             new Recycler({
@@ -43,6 +51,7 @@ passport.use(new GoogleStrategy({
                 gender:profile.gender
             }).save().then((newRecycler)=>{
                 console.log("user:" + newRecycler)
+                newRecycler.userType = "recycler"
                 done(null,newRecycler)
             }).catch(()=>{
                 console.log("error")
@@ -53,30 +62,69 @@ passport.use(new GoogleStrategy({
 }))
 
 
-passport.use(new FacebookStrategy({
-    // options for facebook strategy
-    callbackURL:"/auth/facebook/redirect",
-    clientID:keys.facebook.clientID,
-    clientSecret:keys.facebook.clientSecret,
-    profileFields: ['id', 'displayName', 'photos', 'email']
+
+passport.use(new GoogleStrategy({
+    // options for google strategy
+    callbackURL:"/auth/google/redirect",
+    clientID:keys.google.clientID,
+    clientSecret:keys.google.clientSecret
 },(accessToken,refreshToken,profile,done)=>{
-        Recycler.findOne({facebookId:profile.id}).then((recycler)=>{
+        Recycler.findOne({googleId:profile.id}).then((recycler)=>{
             if (recycler){
                 //user already exists then serilize passsword
                 console.log("already exist")
+                newRecycler.userType = "recycler"
                 done(null,recycler)
             } else {
+                const imageUrl = profile.photos[0].value.replace("?sz=50", "")
             new Recycler({
                 fullName:profile.displayName,
                 firstName:profile.name.givenName,
                 lastName:profile.name.familyName,
                 userName:profile.displayName,
-                facebookId:profile.id,
-                imageUrl:profile.photos[0].value,
+                googleId:profile.id,
+                imageUrl,
                 gender:profile.gender
             }).save().then((newRecycler)=>{
                 console.log("user:" + newRecycler)
+                newRecycler.userType = "recycler"
                 done(null,newRecycler)
+            }).catch(()=>{
+                console.log("error")
+            })
+        }
+    })
+    console.log(profile)
+}))
+
+
+
+passport.use(new GoogleStrategy({
+    // options for google strategy
+    callbackURL:"/auth/google/redirect",
+    clientID:keys.google.clientID,
+    clientSecret:keys.google.clientSecret
+},(accessToken,refreshToken,profile,done)=>{
+        Upcycler.findOne({googleId:profile.id}).then((upcycler)=>{
+            if (upcycler){
+                //user already exists then serilize passsword
+                console.log("already exist")
+                newUpcycler.userType = "upCycler"
+                done(null,upcycler)
+            } else {
+                const imageUrl = profile.photos[0].value.replace("?sz=50", "")
+            new Recycler({
+                fullName:profile.displayName,
+                firstName:profile.name.givenName,
+                lastName:profile.name.familyName,
+                userName:profile.displayName,
+                googleId:profile.id,
+                imageUrl,
+                gender:profile.gender
+            }).save().then((newUpcycler)=>{
+                console.log("user:" + newUpcycler)
+                newUpcycler.userType = "upCycler"
+                done(null,newUpcycler)
             }).catch(()=>{
                 console.log("error")
             })

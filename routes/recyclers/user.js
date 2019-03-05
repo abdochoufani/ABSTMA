@@ -1,17 +1,12 @@
 const router=require('express').Router()
-const Product=require("../models/products")
-const Upcycler=require("../models/upcyclers")
+const Product=require("../../models/products")
+const Upcycler=require("../../models/upcyclers")
 
 const authCheck=(req,res,next)=>{
-    if(!req.user) res.redirect("/") 
+    if(!req.user || req.user.userType !== "recycler") res.redirect("/") 
     else next()
 }
 
-
-router.use((req,res,next)=>{
-  res.locals.currentRecycler = req.session.userId
-  next()
-})
 
   router.get('/profile',authCheck,(req,res)=>{
       debugger
