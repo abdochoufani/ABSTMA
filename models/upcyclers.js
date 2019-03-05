@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
 const upcyclerSchema = new mongoose.Schema({
-  name:{
   fullName: String,
   firstName: String,
-  lastName: String
-  },
-  userName: String,
-  password:String,
+  lastName: String,
+  userName: { type: String, required: true },
+  password: { type: String, required: true },
+  email:    { type: String, required: true },
   companyName: String,
   address: {
     street: String,
@@ -15,7 +14,9 @@ const upcyclerSchema = new mongoose.Schema({
     country: String
   },
   imageUrl: String,
+  description: String,
   website: String,
+  description: String,
   createdAt: {type: Date, default: Date.now},
   //one upcycler can produce many products
   product: [{

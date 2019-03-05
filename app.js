@@ -11,6 +11,8 @@ var userRouter = require('./routes/user');
 var upCyclersRouter = require('./routes/Upcyclers/upcyclers');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
+var oneUpcyclerRouter = require('./routes/Upcyclers/oneUpcycler');
+var productRouter = require('./routes/product');
 var passport=require("passport")
 var passportSetup=require('./config/passport-setup');
 
@@ -43,8 +45,10 @@ app.use(passport.session())
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/upcyclers', upCyclersRouter);
+app.use('/upcycler', oneUpcyclerRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
+app.use('/products', productRouter);
 
 
 // catch 404 and forward to error handler
@@ -63,8 +67,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect('mongodb://localhost:27017/abstma', {useNewUrlParser: true})
-.then(() => console.log('MongodDB Connectet to ABSTMA Database'))
+mongoose.connect('mongodb://localhost/abstma', {useNewUrlParser: true})
+.then((db) => {console.log('MongodDB Connectet to ABSTMA Database')
+})
 .catch(err => console.log(`An error was encountered, details: ${err}`));
 
 module.exports = app;

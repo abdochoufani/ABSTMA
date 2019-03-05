@@ -1,0 +1,5 @@
+{{#each product}}
+<h1><a href="/products/product/{{this.id}}">{{this.name}}</a></h1>
+<h2>Produced by: {{this.upcycler.userName}}</h2>
+<p>{{this.description}}</p>
+{{/each}}
