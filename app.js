@@ -16,7 +16,6 @@ var upcyclerRouter = require('./routes/upcyclers/user');
 var productRouter = require('./routes/products');
 var passport=require("passport")
 var session = require('express-session')
-// var passportSetup=require('./config/passport/passport-setup-recycler');
 
 
 

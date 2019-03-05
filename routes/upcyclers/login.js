@@ -3,7 +3,7 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 var Upcycler = require('../../models/upcyclers');
-const upcyclerPassport = require("../../config/passport/passport-setup-upcyclers")
+const upcyclerPassport = require("../../config/passport-setup")
 
 //GET Route for  => www.abstmo.com/upcyclers
 //show ALL UPCYCLERS

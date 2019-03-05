@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose=require("mongoose")
-<<<<<<< HEAD
 var passport=require("passport")
-=======
-const recyclerPassport=require("../config/passport/passport-setup-recycler")
->>>>>>> chatBranch
 
 
 // root route
@@ -37,29 +33,6 @@ router.get('/auth/google/redirect',recyclerPassport.authenticate('google'),(req,
 })
 
 
-<<<<<<< HEAD
-=======
-/*********************FACEBOOK AUTH************************** */
-
-
-router.get('/auth/facebook/logout',(req,res)=>{
-  req.logOut()
-  res.redirect('/')
-})
-
-
-//  route to test for recyclerPassport
-router.get('/auth/login/facebook',recyclerPassport.authenticate("facebook",{
-  failureRedirect:"/",
-    scope:['profile']
-})) 
-
-
-
-router.get('/auth/facebook/redirect',recyclerPassport.authenticate('facebook'),(req,res)=>{
-    res.redirect('/user/profile')
-})
->>>>>>> chatBranch
 
 
 module.exports = router;

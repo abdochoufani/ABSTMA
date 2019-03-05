@@ -9,29 +9,9 @@ const Product=require('../../models/products')
 
 
 
-router.use((req,res,next)=>{
-  res.locals.currentUser = req.session.user
-  next()
-})
-
-// var requiresLogin=  function (req, res, next) {
-//   if (req.session.userId) {
-//     return next();
-//   } else {
-//     var err = new Error('You must be logged in to view this page.');
-//     err.status = 401;
-//     return next(err);
-//   }
-// }
-
-
 
 router.get('/profile', (req, res) =>{
-<<<<<<< HEAD:routes/upcyclers/user.js
   if(!req.session.user){
-=======
-  if(!req.session.userId){
->>>>>>> chatBranch:routes/Upcyclers/oneUpcycler.js
     var err = new Error("You are not authorized to view this page.");
     err.status = 403;
     return next(err);
@@ -44,14 +24,16 @@ router.get('/profile', (req, res) =>{
 });
 
 
-router.get('product/create',(req,res)=>{
+router.get('/create',(req,res)=>{
   Upcycler.find({},(err, user)=>{
       debugger;
       if (err) res.send("error")
       else res.render('Products/createProduct', {user});
   })
- 
 })
+
+
+
 
 router.post("/product/:id/delete",(req,res)=>{
   Product.findByIdAndDelete(req.params.id, (err)=>{
