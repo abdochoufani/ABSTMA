@@ -31,21 +31,14 @@ router.get('/profile', (req, res) =>{
   if(!req.session.userId){
     res.redirect('/');
   } else {
-<<<<<<< HEAD
     Upcycler.findById(req.session.userId,(err, user)=>{
       if (err) res.send(err)
        else res.render('profileUpcycler.hbs', {user});
-=======
-    Upcycler.findOne({email: req.signedCookies.email},(err, upcycler)=>{
-      if (err) res.send(err)
-      res.render('profileUpcycler.hbs', {user: upcycler});
->>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
     });
   }
 });
 
 
-<<<<<<< HEAD
 router.get('product/create',(req,res)=>{
   Upcycler.find({},(err, user)=>{
       debugger;
@@ -90,7 +83,6 @@ router.post("/product/:id",(req,res)=>{
 
 
 module.exports = router;
-=======
 //edit one upcycler
 //route --> /upcycler/edit/:id
 //GET to render page
@@ -127,4 +119,3 @@ router.post('/edit/:id', (req, res) => {
 });
 module.exports = router;
 
->>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
