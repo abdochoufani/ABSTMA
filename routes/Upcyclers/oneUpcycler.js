@@ -31,21 +31,14 @@ router.get('/profile', (req, res) =>{
   if(!req.session.userId){
     res.redirect('/');
   } else {
-<<<<<<< HEAD
     Upcycler.findById(req.session.userId,(err, user)=>{
       if (err) res.send(err)
        else res.render('profileUpcycler.hbs', {user});
-=======
-    Upcycler.findOne({email: req.signedCookies.email},(err, upcycler)=>{
-      if (err) res.send(err)
-      res.render('profileUpcycler.hbs', {user: upcycler});
->>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
     });
   }
 });
 
 
-<<<<<<< HEAD
 router.get('product/create',(req,res)=>{
   Upcycler.find({},(err, user)=>{
       debugger;
@@ -89,8 +82,7 @@ router.post("/product/:id",(req,res)=>{
 })
 
 
-module.exports = router;
-=======
+
 //edit one upcycler
 //route --> /upcycler/edit/:id
 //GET to render page
@@ -121,10 +113,8 @@ router.post('/edit/:id', (req, res) => {
   Upcycler.findByIdAndUpdate(req.params.id, editedUpcycler, (err) => {
     
     if(err)console.log(err);
-    else res.status(200).send(`${editedUpcycler.firstName} was successfully updated`); 
-    res.redirect('/upcycler/profile');
+    // else res.status(200).send(`${editedUpcycler.firstName} was successfully updated`); 
+    else res.status(200).redirect('/upcycler/profile');
   });
 });
 module.exports = router;
-
->>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
