@@ -1,20 +1,23 @@
 const passport=require('passport');
+
+const recyclerPassport= new passport.Passport();
 const GoogleStrategy=require('passport-google-oauth20');
 const FacebookStrategy=require('passport-facebook')
-const keys=require('./keys')
-const Recycler=require('../models/recyclers')
+const keys=require('../keys')
+const Recycler=require('../../models/recyclers')
 
 
-passport.serializeUser((recycler,done)=>{
+recyclerPassport.serializeUser((recycler,done)=>{
     done(null,recycler.id)
 })
 
-
-passport.deserializeUser((id,done)=>{
+recyclerPassport.deserializeUser((id,done)=>{
     Recycler.findById(id).then((recycler)=>{
         done(null,recycler)
     })
 })
+
+
 
 passport.use(new GoogleStrategy({
     // options for google strategy
@@ -28,11 +31,7 @@ passport.use(new GoogleStrategy({
                 console.log("already exist")
                 done(null,recycler)
             } else {
-
-                
-
                 const imageUrl = profile.photos[0].value.replace("?sz=50", "")
-
             new Recycler({
                 fullName:profile.displayName,
                 firstName:profile.name.givenName,
@@ -84,3 +83,10 @@ passport.use(new FacebookStrategy({
     })
     console.log(profile)
 }))
+
+
+
+
+
+
+  module.exports= recyclerPassport

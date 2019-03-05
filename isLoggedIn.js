@@ -5,9 +5,9 @@ const isLoggedIn = function(req, res, next){
   res.redirect('/');
 }
 
-function loggedOut(req, res, next, url) {
+function loggedOut(req, res, next, ) {
   if (req.session && req.session.userId) {
-    return res.redirect(url);
+    return res.redirect('upcycler/profile');
   }
   return next();
 }

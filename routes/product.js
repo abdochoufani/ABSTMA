@@ -28,37 +28,39 @@ router.get('/',(req, res)=>{
  
 // })
 
-router.post('/', (req,res)=>{
-  const {name,imageUrl, description,weight,size}=req.body;
-  var upcycler = mongoose.Types.ObjectId(req.body.upcycler);
-  const newProduct= new Product({
-      name,
-      description,
-      imageUrl,
-      upcycler,
-      weight,
-      size,
-  })
-  newProduct.save()
-      .then(()=>{
-          res.redirect('/products')
-      })
-})
 
-router.get("/product/:id", (req, res)=> {
-  if(req.params.id){
-      Product.findOne({_id:req.params.id}).populate('upcycler').exec((err, product)=>{
-          debugger
-          if(err) console.log(err)
-          else  res.render('Products/singleProductPage', {product})
-      })
-  }
-  else {
-    res.redirect("/")
-  }
-})
+// router.post('/', (req,res)=>{
+//   const {name,imageUrl, description,weight,size}=req.body;
+//   var upcycler = mongoose.Types.ObjectId(req.body.upcycler);
+//   const newProduct= new Product({
+//       name,
+//       description,
+//       imageUrl,
+//       upcycler,
+//       weight,
+//       size,
+//   })
+//   newProduct.save()
+//       .then(()=>{
+//           res.redirect('/products')
+//       })
+// })
 
-<<<<<<< HEAD
+
+
+// router.get("/product/:id", (req, res)=> {
+//   if(req.params.id){
+//       Product.findOne({_id:req.params.id}).populate('upcycler').exec((err, product)=>{
+//           debugger
+//           if(err) console.log(err)
+//           else  res.render('Products/singleProductPage', {product})
+//       })
+//   }
+//   else {
+//     res.redirect("/")
+//   }
+// })
+
 
 // router.post("/product/:id/delete",(req,res)=>{
 //   Product.findByIdAndDelete(req.params.id, (err)=>{
@@ -92,39 +94,8 @@ router.get("/product/:id", (req, res)=> {
 //       res.redirect('/product');
 //     });
 // })
-=======
-router.post("/product/:id/delete",(req,res)=>{
-  Product.findByIdAndDelete(req.params.id, (err)=>{
-      if(err) console.log(err)
-       else res.redirect("/")
-  })
-})
 
-router.get("/product/:id/edit",(req,res)=>{
-  Product.findById(req.params.id,(err,product)=>{
-      if (err) res.render("error", {err})
-       else {  
-              if(err) console.log(err)
-              else res.render("Products/editProduct", {product})
-      }
-  })
-})
 
-router.post("/product/:id",(req,res)=>{
-  const {name,imageUrl, description,weight,size}=req.body
-  const update={
-    name,
-    imageUrl,
-     description,
-     weight,
-     size
-  }
-  Product.findByIdAndUpdate(req.params.id, update, (err) => {
-      if (err){ return next(err); }
-      res.redirect('/product');
-    });
-})
->>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
 
 module.exports = router;
 

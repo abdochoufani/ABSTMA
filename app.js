@@ -14,7 +14,8 @@ var contactRouter = require('./routes/contact');
 var oneUpcyclerRouter = require('./routes/Upcyclers/oneUpcycler');
 var productRouter = require('./routes/product');
 var passport=require("passport")
-var passportSetup=require('./config/passport-setup');
+var session = require('express-session')
+// var passportSetup=require('./config/passport/passport-setup-recycler');
 
 // test connect to mongoDB
 // mongoose.connect(keys.mongodb.dbURI,()=>{
@@ -36,23 +37,20 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(keys.session.cookieKey,{signed:true}));
-app.use(cookieSession({
-  maxAge:24*60*60*1000,
-  keys:[keys.session.cookieKey]
+app.use(session({
+  secret: keys.session.cookieKey,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
 }))
 
-// app.use((req,res,next)=>{
-//   res.locals.currentUser = req.session.userId
-//   next()
-// })
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 
 app.use(passport.initialize());
-app.use(passport.session())
+app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/upcyclers', upCyclersRouter);
