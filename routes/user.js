@@ -10,7 +10,7 @@ const authCheck=(req,res,next)=>{
       debugger
       console.log(req.user)
       res.render('profileRecycler', {recycler: req.user})
-    // res.send("you arenow loged in " +req.user.userName)
+    // res.send("you arenow loged in " + req.user.userName)
   })
 
 module.exports=router
