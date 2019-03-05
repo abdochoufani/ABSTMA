@@ -1,26 +1,26 @@
 <main class="content">
-    <div>
-        <form action="/upcycler/edit/{{upcycler.id}}" method="POST">
+    <div class="edit-form-container">
+        <form class="edit-form" action="/upcycler/edit/{{upcycler.id}}" method="POST">
             <label for="firstName">First name:</label>
-            <input class="input-field" type="text" name="firstName" value="{{ upcycler.firstName }}">
+            <input class="input-edit" type="text" name="firstName" value="{{ upcycler.firstName }}">
             <label for="lastName">Last name:</label>
-            <input class="input-field" type="text" name="lastName" value="{{ upcycler.lastName }}">
+            <input class="input-edit" type="text" name="lastName" value="{{ upcycler.lastName }}">
             <label for="">Username:</label>
-            <input class="input-field" type="text" name="userName" value="{{ upcycler.userName }}">
+            <input class="input-edit" type="text" name="userName" value="{{ upcycler.userName }}">
             <label for="">Company name:</label>
-            <input class="input-field" type="text" name="companyName" value="{{ upcycler.companyName }}">
+            <input class="input-edit" type="text" name="companyName" value="{{ upcycler.companyName }}">
             <label for="">Email:</label>
-            <input class="input-field" type="email" name="email" value="{{ upcycler.email }}">
+            <input class="input-edit" type="email" name="email" value="{{ upcycler.email }}">
             <label for="">Password:</label>
-            <input class="input-field" type="password" name="password">
+            <input class="input-edit" type="password" name="password">
             <label for="">Country:</label>
-            <input class="input-field" type="text" name="country" value="{{ upcycler.address.country }}">
+            <input class="input-edit" type="text" name="country" value="{{ upcycler.address.country }}">
             <label for="">City:</label>
-            <input class="input-field" type="text" name="city" value="{{ upcycler.address.city }}">
+            <input class="input-edit" type="text" name="city" value="{{ upcycler.address.city }}">
             <label for="">Street:</label>
-            <input class="input-field" type="text" name="street" value="{{ upcycler.address.street }}">
+            <input class="input-edit" type="text" name="street" value="{{ upcycler.address.street }}">
             <label for="">Image url:</label>
-            <input class="input-field" type="text" name="imageUrl">
+            <input class="input-edit" type="text" name="imageUrl">
             <label for="">Description:</label>
             <textarea name="description" cols="30" rows="10" placeholder="Write something about yourself or your upcycling business"></textarea>
             <input class="submit-btn" type="submit">
