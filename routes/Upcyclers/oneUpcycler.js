@@ -22,9 +22,7 @@ router.get('/profile', (req, res) =>{
 //route --> /upcycler/edit/:id
 //GET to render page
 router.get('/edit/:id', (req, res) => {
-  debugger
   Upcycler.findById(req.params.id, (err, upcycler) => {
-    debugger
     if (err) res.status(404).send('The requested profile was not found');
     else res.render('editUpcycler', {upcycler});
   });
@@ -32,7 +30,7 @@ router.get('/edit/:id', (req, res) => {
 
 //POST to pass information
 router.post('/edit/:id', (req, res) => {
-  debugger
+ 
   let editedUpcycler = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -46,14 +44,12 @@ router.post('/edit/:id', (req, res) => {
     imageUrl: req.body.imageUrl,
     description: req.body.description
   };
-  debugger
+  
   Upcycler.findByIdAndUpdate(req.params.id, editedUpcycler, (err) => {
-    debugger
+    
     if(err)console.log(err);
-    else res.status(200).send(`${editedUpcycler.firstName} was successfully updated`);
-    debugger
+    else res.status(200).send(`${editedUpcycler.firstName} was successfully updated`); 
     res.redirect('/upcycler/profile');
-
   });
 });
 module.exports = router;
