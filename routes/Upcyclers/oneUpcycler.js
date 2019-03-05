@@ -17,5 +17,44 @@ router.get('/profile', (req, res) =>{
   }
 });
 
+
+//edit one upcycler
+//route --> /upcycler/edit/:id
+//GET to render page
+router.get('/edit/:id', (req, res) => {
+  debugger
+  Upcycler.findById(req.params.id, (err, upcycler) => {
+    debugger
+    if (err) res.status(404).send('The requested profile was not found');
+    else res.render('editUpcycler', {upcycler});
+  });
+});
+
+//POST to pass information
+router.post('/edit/:id', (req, res) => {
+  debugger
+  let editedUpcycler = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    companyName: req.body.companyName,
+    address: {
+      street: req.body.street,
+      city: req.body.city,
+      country: req.body.country
+    },
+    imageUrl: req.body.imageUrl,
+    description: req.body.description
+  };
+  debugger
+  Upcycler.findByIdAndUpdate(req.params.id, editedUpcycler, (err) => {
+    debugger
+    if(err)console.log(err);
+    else res.status(200).send(`${editedUpcycler.firstName} was successfully updated`);
+    debugger
+    res.redirect('/upcycler/profile');
+
+  });
+});
 module.exports = router;
 
