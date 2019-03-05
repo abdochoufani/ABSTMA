@@ -5,4 +5,11 @@ const isLoggedIn = function(req, res, next){
   res.redirect('/');
 }
 
-module.exports = isLoggedIn;
+function loggedOut(req, res, next, url) {
+  if (req.session && req.session.userId) {
+    return res.redirect(url);
+  }
+  return next();
+}
+
+module.exports = loggedOut=loggedOut;

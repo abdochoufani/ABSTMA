@@ -26,6 +26,7 @@ const upcyclerSchema = new mongoose.Schema({
   }]
 });
 
+
 const Upcycler = mongoose.model('Upcycler', upcyclerSchema);
 
 module.exports = Upcycler;

@@ -4,5 +4,6 @@
 
 <p>{{product.description}}</p>
 
-
-<a href="/products/product/{{product.id}}/edit">Edit</a>
+{{#if user}}
+<a href="/upcycler/product/{{product.id}}/edit">Edit</a>
+{{/if}}
