@@ -82,7 +82,6 @@ router.post("/product/:id",(req,res)=>{
 })
 
 
-module.exports = router;
 //edit one upcycler
 //route --> /upcycler/edit/:id
 //GET to render page
@@ -113,9 +112,10 @@ router.post('/edit/:id', (req, res) => {
   Upcycler.findByIdAndUpdate(req.params.id, editedUpcycler, (err) => {
     
     if(err)console.log(err);
-    else res.status(200).send(`${editedUpcycler.firstName} was successfully updated`); 
-    res.redirect('/upcycler/profile');
+    // else res.status(200).send(`${editedUpcycler.firstName} was successfully updated`); 
+    else res.status(200).redirect('/upcycler/profile');
   });
 });
+
 module.exports = router;
 
