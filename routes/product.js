@@ -3,14 +3,13 @@ var router = express.Router();
 const Product = require('../models/products');
 const Upcycler  = require('../models/upcyclers');
 const mongoose = require('mongoose');
-const isLoggedIn = require('../isLoggedIn');
 
 //Create a temporary route /products to show all products created by an Upcycler
 
 
-// router.get("/*",isLoggedIn)
+
 //GET Route to /product
-router.get('/',isLoggedIn, (req, res)=>{
+router.get('/',(req, res)=>{
   Product.find({}).populate('upcycler')
   .then( product => {
     res.render('Products/product.hbs', {product: product})
@@ -20,14 +19,14 @@ router.get('/',isLoggedIn, (req, res)=>{
   })
 });
 
-router.get('/create',(req,res)=>{
-  Upcycler.find({},(err, upcycler)=>{
-      debugger;
-      if (err) res.send("error")
-      else res.render('Products/createProduct', {upcycler});
-  })
+// router.get('/create',(req,res)=>{
+//   Upcycler.find({},(err, upcycler)=>{
+//       debugger;
+//       if (err) res.send("error")
+//       else res.render('Products/createProduct', {upcycler});
+//   })
  
-})
+// })
 
 router.post('/', (req,res)=>{
   const {name,imageUrl, description,weight,size}=req.body;
@@ -59,6 +58,41 @@ router.get("/product/:id", (req, res)=> {
   }
 })
 
+<<<<<<< HEAD
+
+// router.post("/product/:id/delete",(req,res)=>{
+//   Product.findByIdAndDelete(req.params.id, (err)=>{
+//       if(err) console.log(err)
+//        else res.redirect("/")
+//   })
+// })
+
+// router.get("/product/:id/edit",(req,res)=>{
+//   Product.findById(req.params.id,(err,product)=>{
+//       if (err) res.render("error", {err})
+//        else {  
+//               if(err) console.log(err)
+//               else res.render("Products/editProduct", {product})
+//       }
+//   })
+// })
+
+
+// router.post("/product/:id",(req,res)=>{
+//   const {name,imageUrl, description,weight,size}=req.body
+//   const update={
+//     name,
+//     imageUrl,
+//      description,
+//      weight,
+//      size
+//   }
+//   Product.findByIdAndUpdate(req.params.id, update, (err) => {
+//       if (err){ return next(err); }
+//       res.redirect('/product');
+//     });
+// })
+=======
 router.post("/product/:id/delete",(req,res)=>{
   Product.findByIdAndDelete(req.params.id, (err)=>{
       if(err) console.log(err)
@@ -90,6 +124,7 @@ router.post("/product/:id",(req,res)=>{
       res.redirect('/product');
     });
 })
+>>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
 
 module.exports = router;
 

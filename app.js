@@ -21,6 +21,11 @@ var passportSetup=require('./config/passport-setup');
 //   console.log("connected to dbtest")
 // })
 
+mongoose.connect('mongodb://localhost/abstma', {useNewUrlParser: true})
+.then((db) => {console.log('MongodDB Connectet to ABSTMA Database')
+})
+.catch(err => console.log(`An error was encountered, details: ${err}`));
+
 var app = express();
 
 
@@ -36,6 +41,12 @@ app.use(cookieSession({
   maxAge:24*60*60*1000,
   keys:[keys.session.cookieKey]
 }))
+
+// app.use((req,res,next)=>{
+//   res.locals.currentUser = req.session.userId
+//   next()
+// })
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 

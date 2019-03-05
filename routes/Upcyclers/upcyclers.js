@@ -33,7 +33,7 @@ router.post('/auth/signup', (req, res,next) =>{
         var newUpcycler = {
           userName: req.body.userName,
           email: req.body.email,
-          companyName: req.body.companyName
+          companyName: req.body.companyName,
         }
         bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
           // Store hash in your password DB
@@ -44,6 +44,7 @@ router.post('/auth/signup', (req, res,next) =>{
             } else {
               res.cookie('email', dbentry.email, { signed: true });
               // res.send(`Welcome to the community ${dbentry.userName}`);
+              req.session.userId= result._id 
               res.redirect('/upcycler/profile');
             }
           }).then(()=>{
@@ -55,56 +56,39 @@ router.post('/auth/signup', (req, res,next) =>{
  })
 })
 
-  //Store hashed password with bcrypt into the users db collection============================
-   
-  // bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
-  //   // Store hash in your password DB
-  //   newUpcycler.password = hash;
-  //     debugger
-  //     if(err) res.send(err)
-  //     else if (Upcycler.findOne({ userName: req.body.userName}) ===true) {
-  //       res.send('User Already exist, please proceed to login page!');
-  //     } else {
-  //       Upcycler.create(newUpcycler, (err, dbentry) => {
-  //         if (err) {
-  //           console.log(`error occured: ${err}`);
-  //         } else {
-  //           res.cookie('email', dbentry.email, { signed: true });
-  //           // res.send(`Welcome to the community ${dbentry.userName}`);
-  //           res.redirect('/upcycler/profile');
-  //         }
-  //       }).then(()=>{
-  //         console.log("user created", newUpcycler)
-  //       })
-  //     }
-  //   })
-  // });
+
 
 //no need GET route for login as it is in the root URL /
 router.post('/auth/login', (req,res) => {
-  Upcycler.findOne({userName: req.body.userName},(err,result)=>{
-    debugger
-    if(err){
-      console.log(`error occured ${err}`);
-      res.send(`An error occured`);
-    } else if(!result){
-      res.send('User not registered');
-    }else {
-      bcrypt.compare(req.body.password, result.password).then(function(pswEqual) {
-        if (pswEqual) {
-          res.cookie('email', result.email, {signed: true}); 
-          res.redirect('/upcycler/profile');          
-        } else {
-          res.redirect('/');
-        }
+  if(req.body.userName && req.body.password){
+    Upcycler.findOne({userName: req.body.userName},(err,result)=>{
+      debugger
+      if(err){
+        console.log(`error occured ${err}`);
+        res.send(`An error occured`);
+      } else if(!result){
+        res.send('User not registered');
+      }else {
+        bcrypt.compare(req.body.password, result.password).then(function(pswEqual) {
+          if (pswEqual) {
+            res.cookie('email', result.email, {signed: true});
+            debugger
+            req.session.userId= result._id 
+            res.redirect('/upcycler/profile');   
+          } else {
+            res.send("wrong password or email");
+          }
+        });
+      }
     });
-    }
-  });
+  } else {
+    res.send("Password and email required")
+  }
 });
 //LOGOUT ROUTE UPCYCLERS=============================
 router.get('/logout',(req,res) => {
-  if(req.signedCookies.email){
-    res.clearCookie('email');
+  if(req.session){
+    req.session=null;
     res.redirect('/');
   } else {
     res.send('You already logged out');
