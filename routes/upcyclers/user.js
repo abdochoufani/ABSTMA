@@ -27,7 +27,11 @@ router.use((req,res,next)=>{
 
 
 router.get('/profile', (req, res) =>{
+<<<<<<< HEAD:routes/upcyclers/user.js
   if(!req.session.user){
+=======
+  if(!req.session.userId){
+>>>>>>> chatBranch:routes/Upcyclers/oneUpcycler.js
     var err = new Error("You are not authorized to view this page.");
     err.status = 403;
     return next(err);

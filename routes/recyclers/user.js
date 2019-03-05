@@ -8,11 +8,9 @@ const authCheck=(req,res,next)=>{
 }
 
 
+
   router.get('/profile',authCheck,(req,res)=>{
-      debugger
-      console.log(req.user)
-      res.render('profile', {recycler: req.user})
-    // res.send("you arenow loged in " +req.user.userName)
+    res.render("profileRecyclers")
   })
 
 

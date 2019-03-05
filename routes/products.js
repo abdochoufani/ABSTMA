@@ -29,37 +29,37 @@ router.get('/',(req, res)=>{
 // })
 
 
-router.post('/', (req,res)=>{
-  const {name,imageUrl, description,weight,size}=req.body;
-  var upcycler = mongoose.Types.ObjectId(req.body.upcycler);
-  const newProduct= new Product({
-      name,
-      description,
-      imageUrl,
-      upcycler,
-      weight,
-      size,
-  })
-  newProduct.save()
-      .then(()=>{
-          res.redirect('/products')
-      })
-})
+// router.post('/', (req,res)=>{
+//   const {name,imageUrl, description,weight,size}=req.body;
+//   var upcycler = mongoose.Types.ObjectId(req.body.upcycler);
+//   const newProduct= new Product({
+//       name,
+//       description,
+//       imageUrl,
+//       upcycler,
+//       weight,
+//       size,
+//   })
+//   newProduct.save()
+//       .then(()=>{
+//           res.redirect('/products')
+//       })
+// })
 
 
 
-router.get("/product/:id", (req, res)=> {
-  if(req.params.id){
-      Product.findOne({_id:req.params.id}).populate('upcycler').exec((err, product)=>{
-          debugger
-          if(err) console.log(err)
-          else  res.render('Products/singleProductPage', {product})
-      })
-  }
-  else {
-    res.redirect("/")
-  }
-})
+// router.get("/product/:id", (req, res)=> {
+//   if(req.params.id){
+//       Product.findOne({_id:req.params.id}).populate('upcycler').exec((err, product)=>{
+//           debugger
+//           if(err) console.log(err)
+//           else  res.render('Products/singleProductPage', {product})
+//       })
+//   }
+//   else {
+//     res.redirect("/")
+//   }
+// })
 
 
 // router.post("/product/:id/delete",(req,res)=>{
