@@ -82,7 +82,6 @@ router.post("/product/:id",(req,res)=>{
 })
 
 
-
 //edit one upcycler
 //route --> /upcycler/edit/:id
 //GET to render page
@@ -117,4 +116,6 @@ router.post('/edit/:id', (req, res) => {
     else res.status(200).redirect('/upcycler/profile');
   });
 });
+
 module.exports = router;
+
