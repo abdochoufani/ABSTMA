@@ -7,16 +7,12 @@ const authCheck=(req,res,next)=>{
     else next()
 }
 
-<<<<<<< HEAD
 
 router.use((req,res,next)=>{
   res.locals.currentRecycler = req.session.userId
   next()
 })
 
-=======
-//route--> /user/profile
->>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
   router.get('/profile',authCheck,(req,res)=>{
       debugger
       console.log(req.user)
@@ -24,7 +20,6 @@ router.use((req,res,next)=>{
     // res.send("you arenow loged in " + req.user.userName)
   })
 
-<<<<<<< HEAD
 
 
   router.get("/product/:id", (req, res)=> {
@@ -52,9 +47,6 @@ router.use((req,res,next)=>{
     })
   });
 
-  
+  // hello
 
   module.exports=router
-=======
-module.exports=router
->>>>>>> 638c72e1a4fc3a0fe572c65716808a3e76b9bd28
